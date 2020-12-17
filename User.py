@@ -1,18 +1,18 @@
+
 from io import open;
 
 class User:
 
-    def __init__(self, Password, Name, TypeOfUser):
-        self.__Password = Password;
-        self.__Name = Name;
-        self.__TypeOfUser = TypeOfUser;
+    def __init__(self):
 
     def __FirstTime(self, TypeOfUser):
 
+        TypeOfUser = str(TypeOfUser);
+
         if TypeOfUser == "root":
-            File = Open("usr/root/root.dat", "r");
+            File = open("usr/root/root.dat", "r");
         else:
-            if TypeOfUser == "admin"":
+            if TypeOfUser == "admin":
                 File = open("usr/admin/admin.dat", "r");
             else:
                 if TypeOfUser == "assistant":
@@ -21,6 +21,7 @@ class User:
                     return 3;  # Error: Usuario no encontrado.
 
         Line = File.readline();
+        Line = Line.split();
 
         if Line[0] == TypeOfUser and Line[1] == TypeOfUser:
             File.close();
@@ -29,59 +30,121 @@ class User:
             File.close();
             return False;
 
-    def __CreateUser(self,Name,Password,TypeOfUser):
-        if TypeOfUser == "assistant":
-            File = open("usr/assistant/assistant.dat","ab");
-            File.write(str(Name + " " + Password + "\n"));
-            File.close();
-        else:
+    def CreateUser(self,Name,Password,TypeOfUser):
+
+        Name = str(Name);
+        Password = str(Password);
+        TypeOfUser = str(TypeOfUser);
+
+        IsFirstTime = self.__FirstTime(self,TypeOfUser);
+
+        if IsFirstTime == True:
+
             if TypeOfUser == "root":
-                File = open("usr/root/root.bin","wb");
+
+                File = open("usr/root/root.dat", "w");
+                File.write("fhbshzwxecrvtbvecwxdszddfghgzadsfdgcfb asdjnlakyutkhujtuknybjnjyukylmunikiynimuibtjdb");
+                File.close();
+                self.CreateUser(self, Name, Password, TypeOfUser);
+
+            else:
+                if TypeOfUser == "admin":
+
+                    File = open("usr/admin/admin.dat", "w");
+                    File.write("fhbshgsdgeargerqgererwgerwgwregwrgerwgerwgrefb asdjnlafvabgxnhdcbgsbgvkjdb");
+                    File.close();
+                    self.CreateUser(self, Name, Password, TypeOfUser);
+
+                else:
+                    if TypeOfUser == "assistant":
+
+                        File = open("usr/assistant/assistant.dat", "w");
+                        File.write("fasfeffqwefweferferferrgaerghbshfb asdvxatbwdeyuqegfywqcgfoywmerjnlakjdb");
+                        File.close();
+                        self.CreateUser(self, Name, Password, TypeOfUser);
+
+        else:
+            if TypeOfUser == "assistant":
+                File = open("usr/assistant/" + Name + "assistant.bin","wb");
                 File.write(str(Name + " " + Password + "\n"));
                 File.close();
+
             else:
-                if TypeOfUser = "admin":
-                    File = open("usr/admin/admin.bin","wb");
+                if TypeOfUser == "root":
+                    File = open("usr/root/" + Name + "root.bin","wb");
                     File.write(str(Name + " " + Password + "\n"));
                     File.close();
-
-
-
-    def SetNewPassword(self, Name, OldPassword, NewPassword):
-
-
-    def Check(self,Name,Password,TypeOfUser):
-        First = self.__FirstTime(self.__TypeOfUser)
-
-        if First == True:
-            self.__CreateUser(Name,Password,TypeOfUser);
-        else:
-            if First = False:
-                if TypeOfUser == "root":
-                    File = open("usr/root/root.bin","rb");
                 else:
                     if TypeOfUser == "admin":
-                        File = open("usr/admin/admin.bim","rb");
-                    else:
-                        if TypeOfUser == "assistant":
-                            File = open("usr/assistant/assistant.bin","rb");
+                        File = open("usr/admin/" + Name + "admin.bin","wb");
+                        File.write(str(Name + " " + Password + "\n"));
+                        File.close();
 
 
+    def SetNewPassword(self, Name, OldPassword, NewPassword,TypeOfUser):
+
+        Name = str(Name);
+        OldPassword = str(OldPassword);
+        NewPassword = str(NewPassword);
+        TypeOfUser = str(TypeOfUser);
+
+        if TypeOfUser == "assistant":
+
+            try:
+
+                File = open("usr/assistant/" + Name + "assistant.bin", "rb");
+                Line = File.readline().split();
+
+                if Line[0] == Name and Line[1] == OldPassword:
+                    File.close()
+                    File = open("usr/assistant/" + Name + "assistant.bin", "wb");
+                    File.write(str(Name + " " + NewPassword + "\n"));
+
+                File.close();
+
+            except:
+
+                File.close();
+                return "Error: No existe el usuario:";
 
 
-class root(User):
+        else:
 
-    def __init__(self, Name, Password):
-        self.__Password = Password;
-        self.__Name = Name;
-        self.__TypeOfUser = "root";
+            if TypeOfUser == "root":
 
-    def SetPassword(self, Password):
+                try:
 
+                    File = open("usr/root/" + Name + "root.bin", "rb");
 
-class admin(User):
-    pass
+                    Line = File.readline().split();
 
-class Assistant(User):
-    pass
+                    if Line[0] == Name and Line[1] == OldPassword:
+                        File.close();
+                        File = open("usr/root/" + Name + "root.bin", "wb");
+                        File.write(str(Name + " " + NewPassword + "\n"));
 
+                    File.close();
+
+                except:
+
+                    File.close();
+                    return "Error: No existe el usuario.";
+
+            else:
+                try:
+
+                    if TypeOfUser == "admin":
+                        File = open("usr/admin/" + Name + "admin.bin", "wb");
+                        Line = File.readline().split();
+
+                        if Line[0] == Name and Line[1] == OldPassword:
+                            File.close();
+                            File = open("usr/admin/" + Name + "admin.bin", "wb");
+                            File.write(str(Name + " " + NewPassword + "\n"));
+
+                        File.close();
+
+                except:
+
+                    File.close();
+                    return "Error: No existe el usuario.";
