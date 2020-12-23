@@ -1,28 +1,40 @@
 import tkinter
 from tkinter import messagebox
 from tkinter import *
+from PIL import ImageTk
+
 
 ventana = tkinter.Tk()
-ventana.geometry("500x600")
+ventana.title("Administrador Consultorio")
+ventana.geometry("1199x600+100+50")
+ventana.resizable(0,0)
 
-etiqueta = tkinter.Label(ventana, text="Log in")
-etiqueta.pack()
-etiqueta.config(fg="black", font=("BERNARD MT CONDENSED", 24))
+# Imagen Fondo
+fondo = ImageTk.PhotoImage(file="LG.jpg")
+lblFondo = Label(ventana, image=fondo)
+lblFondo.place(x=0, y=0, relwidth=1.5, relheight=1)
 
-etiqueta = tkinter.Label(ventana, text="Usuario")
-etiqueta.pack()
-etiqueta.config(fg="black", font=("ARIAL", 10))
+# Marco Log in
+marco_Log = Frame(bg="white")
+marco_Log.place(x=800, y=40, width=340, height=500)
 
-cajaTexto1 = tkinter.Entry(ventana, bg="light blue")
-cajaTexto1.pack()
+title = Label(marco_Log, text="Iniciar\nSesión", font=("Courier", 30, "bold"), fg="grey", bg="white")
+title.place(x=70, y=30)
 
+desc = Label(marco_Log, text="Cuenta Empleado", font=("Helvetica", 11, "bold"), fg="grey", bg="white")
+desc.place(x=90, y=140)
 
-etiqueta = tkinter.Label(ventana, text="Contraseña")
-etiqueta.pack()
-etiqueta.config(fg="black", font=("ARIAL",10))
+lbl_usuario = Label(marco_Log, text="Usuario", font=("Century Gothic", 15, "bold"), fg="black", bg="white")
+lbl_usuario.place(x=40, y=210)
 
-cajaTexto2 = tkinter.Entry(ventana, bg="light blue", show="*")
-cajaTexto2.pack()
+cajaTexto1 = tkinter.Entry(marco_Log, font=("Calibri light", 15), bg="light blue")
+cajaTexto1.place(x=40, y=250, width=260, height=35)
+
+lbl_contraseña = Label(marco_Log, text="Contraseña", font=("Century Gothic", 15, "bold"), fg="black", bg="white")
+lbl_contraseña.place(x=40, y=310)
+
+cajaTexto2 = tkinter.Entry(marco_Log, font=("Calibri light", 15), bg="light blue", show="*")
+cajaTexto2.place(x=40, y=350, width=260, height=35)
 
 def insesion():
     C1 = cajaTexto1.get()
@@ -31,37 +43,18 @@ def insesion():
     print(C2)
 
     if (cajaTexto1.get()=="" or cajaTexto2.get()=="" ):
-        messagebox.showerror("Error!, Llene todos los campos requeridos")
+        messagebox.showerror("¡Error!", "Llene todos los campos requeridos")
     elif (cajaTexto1.get()=="ABCDEF" and cajaTexto2.get()=="12345" ):
-        messagebox.showinfo("Bienvenido!", cajaTexto1.get())
+        messagebox.showinfo("¡Bienvenido!", cajaTexto1.get())
         ventana.destroy()
-        ventana2 = tkinter.Tk() #inicio la segunda ventana
-        ventana2.geometry("1000x1200")
-        ventana2.config(bg = "beige")
-
-        etiqueta = tkinter.Label(ventana2, text="CITAS")
-        etiqueta.pack()
-        etiqueta.config(fg="black", font=("ARIAL", 20))
-
-        boton1_v2 = tkinter.Button(text="Historial clínico")
-        boton1_v2.pack()
-
-        boton2_v2 = tkinter.Button(ventana2, text="Medicamentos")
-        boton2_v2.pack()
-
-        boton3_v2 = tkinter.Button(ventana2, text="Resetas")
-        boton3_v2.pack()
-
-        boton4_v2 = tkinter.Button(ventana2, text="Usuarios")
-        boton4_v2.pack()
+        import Ventana1 as v1
+        # v1.Ventana1()
 
     else:
-        messagebox.showerror("Error! Datos no válidos")
+        messagebox.showerror("¡Error!", "Datos no válidos")
 
-boton1 = tkinter.Button(ventana, text="Iniciar sesión", command=insesion, bg="light blue")
-boton1.pack()
+boton1 = tkinter.Button(text="Entrar", command=insesion,fg="white", bg="grey", font=("Monospaced", 15), activeforeground="grey", cursor="hand2")
+boton1.place(x=940, y=520)
+
 
 ventana.mainloop()
-
-
-
