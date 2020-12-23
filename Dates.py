@@ -52,3 +52,22 @@ class Date:
 
         else:
             return False;  # Error: Campos incompletos.
+
+    def LoadToday(self, Year, Month, Day):
+
+        Dates = [];
+
+        if os.path.isfile("dates/" + str(Year) + str(Month) + str(Day) + ".csv"):
+
+            File = open("dates/" + str(Year) + str(Month) + str(Day) + ".csv", "r");
+
+            for Line in File:
+                Dates.append(Line);
+
+            File.close();
+
+            return Dates;
+
+        else:
+
+            return [];
