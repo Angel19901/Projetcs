@@ -153,6 +153,11 @@ class User:
 
 
     def ValidUser(self, Name, Password, TypeOfUser):
+
+        Name = str(Name);
+        Password = str(Password);
+        TypeOfUser = str(TypeOfUser);
+
         if TypeOfUser == "root":
             if os.path.isfile("usr\\root\\" + Name + "root.bin"):
                 File = open("usr\\root\\" + Name + "root.bin","rb");
