@@ -2,8 +2,9 @@ import tkinter
 from tkinter import messagebox
 from tkinter import *
 from PIL import ImageTk
+import Citas
 
-
+#Falta validar campos con el tipo de dato
 ventana = tkinter.Tk()
 ventana.title("Administrador Consultorio")
 ventana.geometry("1199x600+100+50")
@@ -47,8 +48,7 @@ def insesion():
     elif (cajaTexto1.get()=="ABCDEF" and cajaTexto2.get()=="12345" ):
         messagebox.showinfo("¡Bienvenido!", cajaTexto1.get())
         ventana.destroy()
-        import Ventana1 as v1
-        # v1.Ventana1()
+        Citas.firstwindow(C1)
 
     else:
         messagebox.showerror("¡Error!", "Datos no válidos")
