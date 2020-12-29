@@ -103,7 +103,7 @@ def Receta():
         #Generar la receta como archivo tipo PDF
 
         #Contenido de la receta
-        nombreDocumento = NombrePaciente+' Receta.pdf'
+        nombreDocumento = NombrePaciente+'-Receta.pdf'
         titulo = 'Receta Médica'
         titulo1 = 'Dra. Abcdefgh Ijklmnñopq Rstuvwxyz'
         titulo2 = 'Médica-UNAM'
@@ -183,8 +183,8 @@ def Receta():
 
         for line in Texto:
             texto.textLine(line)
-        pdf.drawText(texto)
-        pdf.save()'''
+        pdf.drawText(texto)'''
+        pdf.save()
 
 
     # Botones
