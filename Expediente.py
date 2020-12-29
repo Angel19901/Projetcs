@@ -245,7 +245,7 @@ def Expediente():
         print(Signos)
         print(Exploracion)
 
-        file = open(Nombre+" Expediente.txt", "w")
+        file = open(Nombre+"-Expediente.txt", "w")
         file.write(Nombre)
         file.write(Edad)
         file.write(Sexo)
