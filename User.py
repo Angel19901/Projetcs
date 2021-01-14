@@ -107,7 +107,7 @@ class User:
             except:
 
                 File.close();
-                return "Error: No existe el usuario:";
+                return 3; #Usurio no existe
 
 
         else:
