@@ -187,8 +187,7 @@ class HISCG:
         def SetTALLA(self):
 
         # IX EXPLORACION FISICA
-        def SetHABITUS_EXTERIOR(self):
-
+        HABITUS_EXTERIOR = ""
         CABEZA = ""
         CUELLO = ""
         TORAX = ""

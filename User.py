@@ -38,7 +38,7 @@ class User:
         Password = str(Password);
         TypeOfUser = str(TypeOfUser);
 
-        IsFirstTime = self.__FirstTime(self,TypeOfUser);
+        IsFirstTime = self.__FirstTime(TypeOfUser);
 
         if IsFirstTime == True:
 
