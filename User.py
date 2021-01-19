@@ -95,12 +95,12 @@ class User:
             try:
 
                 File = open("usr\\assistant\\" + Name + "assistant.bin", "rb");
-                Line = File.readline().split();
+                Line = (File.readline().decode()).split();
 
                 if Line[0] == Name and Line[1] == OldPassword:
                     File.close()
                     File = open("usr\\assistant\\" + Name + "assistant.bin", "wb");
-                    File.write(str(Name + " " + NewPassword + "\n"));
+                    File.write(str(Name + " " + NewPassword + "\n").encode());
 
                 File.close();
 
@@ -118,7 +118,7 @@ class User:
 
                     File = open("usr\\root\\" + Name + "root.bin", "rb");
 
-                    Line = File.readline().split();
+                    Line = (File.readline().decode()).split();
 
                     if Line[0] == Name and Line[1] == OldPassword:
                         File.close();
@@ -137,7 +137,7 @@ class User:
 
                     if TypeOfUser == "admin":
                         File = open("usr\\admin\\" + Name + "admin.bin", "rb");
-                        Line = File.readline().split();
+                        Line = (File.readline().decode()).split();
 
                         if Line[0] == Name and Line[1] == OldPassword:
                             File.close();
