@@ -68,18 +68,18 @@ class User:
         else:
             if TypeOfUser == "assistant":
                 File = open("usr\\assistant\\" + Name + "assistant.bin","wb");
-                File.write(str(Name + " " + Password + "\n"));
+                File.write(str(Name + " " + Password + "\n").encode());
                 File.close();
 
             else:
                 if TypeOfUser == "root":
                     File = open("usr\\root\\" + Name + "root.bin","wb");
-                    File.write(str(Name + " " + Password + "\n"));
+                    File.write(str(Name + " " + Password + "\n").encode());
                     File.close();
                 else:
                     if TypeOfUser == "admin":
                         File = open("usr\\admin\\" + Name + "admin.bin","wb");
-                        File.write(str(Name + " " + Password + "\n"));
+                        File.write(str(Name + " " + Password + "\n").encode());
                         File.close();
 
 
@@ -123,7 +123,7 @@ class User:
                     if Line[0] == Name and Line[1] == OldPassword:
                         File.close();
                         File = open("usr\\root\\" + Name + "root.bin", "wb");
-                        File.write(str(Name + " " + NewPassword + "\n"));
+                        File.write(str(Name + " " + NewPassword + "\n").encode());
 
                     File.close();
 
@@ -136,13 +136,13 @@ class User:
                 try:
 
                     if TypeOfUser == "admin":
-                        File = open("usr\\admin\\" + Name + "admin.bin", "wb");
+                        File = open("usr\\admin\\" + Name + "admin.bin", "rb");
                         Line = File.readline().split();
 
                         if Line[0] == Name and Line[1] == OldPassword:
                             File.close();
                             File = open("usr\\admin\\" + Name + "admin.bin", "wb");
-                            File.write(str(Name + " " + NewPassword + "\n"));
+                            File.write(str(Name + " " + NewPassword + "\n").encode());
 
                         File.close();
 
@@ -159,9 +159,9 @@ class User:
         TypeOfUser = str(TypeOfUser);
 
         if TypeOfUser == "root":
-            if os.path.isfile("usr\\root\\" + Name + "root.bin"):
+            if os.path.exists("usr\\root\\" + Name + "root.bin"):
                 File = open("usr\\root\\" + Name + "root.bin","rb");
-                Line = File.readline().split();
+                Line = (File.readline().decode()).split();
 
                 if Line[0] == Name and Line[1] == Password:
                     return True;
@@ -173,9 +173,9 @@ class User:
 
         else:
             if TypeOfUser == "admin":
-                if os.path.isfile("usr\\admin\\" + Name + "admin.bin"):
+                if os.path.exists("usr\\admin\\" + Name + "admin.bin"):
                     File = open("usr\\admin\\" + Name + "admin.bin", "rb");
-                    Line = File.readline().split();
+                    Line = (File.readline().decode()).split();
 
                     if Line[0] == Name and Line[1] == Password:
                         return True;
@@ -187,18 +187,15 @@ class User:
 
             else:
                 if TypeOfUser == "assistant":
-                    if os.path.isfile("usr\\assistant\\" + Name + "assistant.bin"):
+                    if os.path.exists("usr\\assistant\\" + Name + "assistant.bin"):
                         File = open("usr\\assistant\\" + Name + "assistant.bin", "rb");
-                        Line = File.readline().split();
+                        Line = (File.readline().decode()).split();
 
                         if Line[0] == Name and Line[1] == Password:
                             return True;
                         else:
                             return False;
-
                     else:
                         return False;
-
                 else:
-
                     return False;
