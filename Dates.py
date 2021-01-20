@@ -45,12 +45,12 @@ class Date:
             if os.path.exists("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv"):
                 File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "a");
                 File.write(str(self.__Year) + "," + str(self.__Month) + "," + str(self.__Day) + "," + str(
-                    self.__Hour) + "," + str(self.__Minute) + str(self.__Name) +"\n");
+                    self.__Hour) + "," + str(self.__Minute) + "," + str(self.__Name) +"\n");
                 File.close();
             else:
                 File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "w");
                 File.write("Year,Month,Day,Hour,Minute\n" + str(self.__Year) + "," + str(self.__Month) + "," + str(
-                    self.__Day) + "," + str(self.__Hour) + "," + str(self.__Minute) + str(self.__Name)+"\n");
+                    self.__Day) + "," + str(self.__Hour) + "," + str(self.__Minute) + "," +str(self.__Name)+"\n");
                 File.close();
 
             return True;
