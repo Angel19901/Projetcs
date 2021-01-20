@@ -2,20 +2,29 @@
 import os
 from io import open
 
-
 def CreateDirAndFile(ID, Data):
-       if os.path.exists(str("exp" + os.sep + str(ID))):
-               try:
-                       File = open(str("exp" + os.sep + str(ID) + os.sep + str(ID) + ".expe"),"a+");
-                       File.write(Data);
-                       File.close();
-               except IOError:
-                       return False;
-       else:
-               try:
+
+        if os.path.exists(str("exp" + os.sep + str(ID))):
+
+                try:
+
+                        File = open(str("exp" + os.sep + str(ID) + os.sep + str(ID) + ".expe"),"a+");
+                        File.write(Data);
+                        File.close();
+
+                except IOError:
+
+                        return False;
+
+        else:
+                try:
+
                         os.mkdir(str("exp" + os.sep+ str(ID)))
-               except OSError:
-                       return False;
+                        CreateDirAndFile(ID,Data);
+
+                except OSError:
+
+                        return False;
 
         return True;
 
@@ -293,6 +302,10 @@ class HISCG:
                 except IOError:
                         return -1;
 
+        def __Encrypt(self, ):
+                pass;
+
+
         def Dump(self):
 
                 ID = self.IDP();
@@ -301,77 +314,124 @@ class HISCG:
 
                         # 0 Datos de Unidad
                         self.UNIDAD_MEDICA = SClean(self.UNIDAD_MEDICA) + "\n"
-                                CreateDirAndFile(ID, self.UNIDAD_MEDICA);
+                        CreateDirAndFile(ID, self.UNIDAD_MEDICA);
                         self.EXPEDIENTE = SClean(self.EXPEDIENTE) + "\n"
+                        CreateDirAndFile(ID, self.EXPEDIENTE);
                         self.FECHA_DE_ELABORACION = SClean(self.FECHA_DE_ELABORACION) + "\n"
+                        CreateDirAndFile(ID, self.FECHA_DE_ELABORACION);
                         self.HORA_DE_ELABORACION = SClean(self.HORA_DE_ELABORACION) + "\n"
+                        CreateDirAndFile(ID, self.HORA_DE_ELABORACION);
                         self.TIPO_DE_INTERROGATORIO = SClean(self.TIPO_DE_INTERROGATORIO) + "\n"
+                        CreateDirAndFile(ID, self.TIPO_DE_INTERROGATORIO);
+
 
                         # I. FICHA DE  IDENTIFICACION
                         self.NOMBRE_DEL_PACIENTE = SClean(self.NOMBRE_DEL_PACIENTE) + "\n" #(APELLIDO PATERNO, APELLIDO MATERNO Y NOMBRE (S))
+                        CreateDirAndFile(ID, self.NOMBRE_DEL_PACIENTE);
                         self.EDAD = SClean(self.EDAD) + "\n"
+                        CreateDirAndFile(ID, self.EDAD);
                         self.FECHA_DE_NACIMIENTO = SClean(self.FECHA_DE_NACIMIENTO) + "\n"
+                        CreateDirAndFile(ID, self.FECHA_DE_ELABORACION);
                         self.OCUPACION_DEL_PACIENTE = SClean(self.OCUPACION_DEL_PACIENTE) + "\n"
+                        CreateDirAndFile(ID, self.OCUPACION_DEL_PACIENTE);
                         self.DOMICILIO = SClean(self.DOMICILIO) + "\n"
+                        CreateDirAndFile(ID, self.DOMICILIO);
                         self.TELEFONO = SClean(self.TELEFONO) + "\n"
+                        CreateDirAndFile(ID, self.TELEFONO);
                         self.NOMBRE_DEL_PADRE_O_TUTOR = SClean(self.NOMBRE_DEL_PADRE_O_TUTOR) + "\n"
+                        CreateDirAndFile(ID, self.NOMBRE_DEL_PADRE_O_TUTOR);
                         self.PARENTESCO_CON_EL_PACIENTE = SClean(self.PARENTESCO_CON_EL_PACIENTE) + "\n"
+                        CreateDirAndFile(ID, self.PARENTESCO_CON_EL_PACIENTE);
 
                         # II. ANTECEDENTES HEREDOFAMILIARES
                         self.AntHer = SClean(self.AntHer) + "\n"
+                        CreateDirAndFile(ID, self.AntHer);
 
                         # III. ANTECEDENTES PERSONALES  NO PATOLOGICOS
                         self.AntPerNoPat = SClean(self.AntPerNoPat) + "\n"
+                        CreateDirAndFile(ID, self.AntPerNoPat);
 
                         # IV. ANTECENTES PERSONALES PATOLOGICOS
                         self.AntPerPat = SClean(self.AntPerPat) + "\n"
+                        CreateDirAndFile(ID, self.AntPerPat);
 
                         # V. ANTECEDENTES GINECOLOGICOS
                         self.AntGin = SClean(self.AntGin) + "\n"
+                        CreateDirAndFile(ID, self.AntHer);
 
                         # VI. PADECIMIENTO ACTUAL
                         self.PadAct = SClean(self.PadAct) + "\n"
+                        CreateDirAndFile(ID, self.PadAct);
 
                         # VII. INTERROGATORIO POR APARATOS  Y SISTEMAS
                         self.CARDIOVASCULAR = SClean(self.CARDIOVASCULAR) + "\n"
+                        CreateDirAndFile(ID, self.CARDIOVASCULAR);
                         self.RESPIRATORIO = SClean(self.RESPIRATORIO) + "\n"
+                        CreateDirAndFile(ID, self.RESPIRATORIO);
                         self.GASTROINTESTINAL = SClean(self.GASTROINTESTINAL) + "\n"
+                        CreateDirAndFile(ID, self.GASTROINTESTINAL);
                         self.HEMATICO_Y_LINFATICO = SClean(self.HEMATICO_Y_LINFATICO) + "\n"
+                        CreateDirAndFile(ID, self.HEMATICO_Y_LINFATICO);
                         self.ENDOCRINO = SClean(self.ENDOCRINO) + "\n"
+                        CreateDirAndFile(ID, self.ENDOCRINO);
 
                         #VII. INTERROGATORIO POR APARATOS Y SISTEMAS
                         self.NERVIOSO = SClean(self.NERVIOSO) + "\n"
+                        CreateDirAndFile(ID, self.NERVIOSO);
                         self.MUSCULOESQUELETICO  = SClean(self.MUSCULOESQUELETICO) + "\n"
+                        CreateDirAndFile(ID, self.MUSCULOESQUELETICO);
                         self.PIEL_MUCOSAS_Y_ANEXOS = SClean(self.PIEL_MUCOSAS_Y_ANEXOS) + "\n"
+                        CreateDirAndFile(ID, self.PIEL_MUCOSAS_Y_ANEXOS);
 
                         # VIII. SIGNOS VITALES
                         self.TENSION_ARTERIAL  = SClean(self.TENSION_ARTERIAL) + "\n"
+                        CreateDirAndFile(ID, self.TENSION_ARTERIAL);
                         self.TEMPERATURA  = SClean(self.TEMPERATURA) + "\n"
+                        CreateDirAndFile(ID, self.TEMPERATURA);
                         self.FRECUENCIA_CARDIACA = SClean(self.FRECUENCIA_CARDIACA) + "\n"
+                        CreateDirAndFile(ID, self.FRECUENCIA_CARDIACA);
                         self.FRECUENCIA_RESPIRATORIA = SClean(self.FRECUENCIA_RESPIRATORIA) + "\n"
+                        CreateDirAndFile(ID, self.FRECUENCIA_RESPIRATORIA);
                         self.PESO = SClean(self.PESO) + "\n"
+                        CreateDirAndFile(ID, self.PESO);
                         self.TALLA = SClean(self.TALLA) + "\n"
+                        CreateDirAndFile(ID, self.TALLA);
 
                         # IX EXPLORACION FISICA
                         self.HABITUS_EXTERIOR = SClean(self.HABITUS_EXTERIOR)
+                        CreateDirAndFile(ID, self.HABITUS_EXTERIOR);
                         self.CABEZA = SClean(self.CABEZA) + "\n"
+                        CreateDirAndFile(ID, self.CABEZA);
                         self.CUELLO = SClean(self.CUELLO) + "\n"
+                        CreateDirAndFile(ID, self.CUELLO);
                         self.TORAX = SClean(self.TORAX) + "\n"
+                        CreateDirAndFile(ID, self.TORAX);
                         self.ABDOMEN = SClean(self.ABDOMEN) + "\n"
+                        CreateDirAndFile(ID, self.ABDOMEN);
 
                         self.GENITALES = SClean(self.GENITALES) + "\n"
+                        CreateDirAndFile(ID, self.GENITALES);
                         self.EXTREMIDADES = SClean(self.EXTREMIDADES) + "\n"
+                        CreateDirAndFile(ID, self.EXTREMIDADES);
                         self.PIEL = SClean(self.PIEL) + "\n"
+                        CreateDirAndFile(ID, self.PIEL);
+
                         # X. RESULTADOS PREVIOS  Y ACTUALES DE LABORATORIO, GABINETE Y OTROS:
                         self.ResPreActLabGabOtr = SClean(self.ResPreActLabGabOtr) + "\n"
+                        CreateDirAndFile(ID, self.ResPreActLabGabOtr);
 
                         # XI. DIAGNOSTICOS O PROBLEMAS  CLINICOS:
                         self.DiaProCli = SClean(self.DiaProCli) + "\n"
+                        CreateDirAndFile(ID, self.DiaProCli);
 
                         # XII. TRATAMIENTO FARMACOLOGICO\
                         self.TraFar = SClean(self.TraFar) + "\n"
+                        CreateDirAndFile(ID, self.TraFar);
                         self.TERAPEUTICA_EMPLEADA_Y_RESULTADOS_PREVIOS = SClean(self.TERAPEUTICA_EMPLEADA_Y_RESULTADOS_PREVIOS) + "\n"
+                        CreateDirAndFile(ID, self.TERAPEUTICA_EMPLEADA_Y_RESULTADOS_PREVIOS);
                         self.TERAPEUTICA_ACTUAL = SClean(self.TERAPEUTICA_ACTUAL) + "\n"
+                        CreateDirAndFile(ID, self.TERAPEUTICA_ACTUAL);
 
                         # XIII. PRONOSTICO
                         self.Pro = SClean(self.Pro) + "\n"
+                        CreateDirAndFile(ID, self.Pro);
