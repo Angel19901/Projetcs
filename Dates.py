@@ -7,6 +7,7 @@ class Date:
     __Day = -1;
     __Hour = -1;
     __Minute = -1;
+    __Name = "";
 
     def __init__(self):
 
@@ -15,6 +16,10 @@ class Date:
         self.__Day = -1;
         self.__Hour = -1;
         self.__Minute = -1;
+        self.__Name = "";
+
+    def GetName(self, Name):
+        self.__Name = Name;
 
     def GetYear(self, Year):
         self.__Year = Year;
@@ -32,20 +37,20 @@ class Date:
         self.__Minute = Minute;
 
     def __Check(self):
-        return self.__Year >= 0 and self.__Month >= 0 and self.__Day >= 0 and self.__Hour >= 0 and self.__Minute >= 0;
+        return self.__Year > 0 and self.__Month > 0 and self.__Day > 0 and self.__Hour > 0 and self.__Minute > 0;
 
     def Dump(self):
         if self.__Check():
 
-            if os.path.isfile("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv"):
+            if os.path.exists("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv"):
                 File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "a");
                 File.write(str(self.__Year) + "," + str(self.__Month) + "," + str(self.__Day) + "," + str(
-                    self.__Hour) + "," + str(self.__Minute) + "\n");
+                    self.__Hour) + "," + str(self.__Minute) + str(self.__Name) +"\n");
                 File.close();
             else:
                 File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "w");
                 File.write("Year,Month,Day,Hour,Minute\n" + str(self.__Year) + "," + str(self.__Month) + "," + str(
-                    self.__Day) + "," + str(self.__Hour) + "," + str(self.__Minute) + "\n");
+                    self.__Day) + "," + str(self.__Hour) + "," + str(self.__Minute) + str(self.__Name)+"\n");
                 File.close();
 
             return True;
@@ -57,7 +62,7 @@ class Date:
 
         Dates = [];
 
-        if os.path.isfile("dates/" + str(Year) + str(Month) + str(Day) + ".csv"):
+        if os.path.exists("dates/" + str(Year) + str(Month) + str(Day) + ".csv"):
 
             File = open("dates/" + str(Year) + str(Month) + str(Day) + ".csv", "r");
 
