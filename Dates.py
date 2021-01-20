@@ -76,3 +76,16 @@ class Date:
         else:
 
             return [];
+
+prueba = Date()
+prueba.GetName("Blanca Rosa Gonzalez")
+prueba.GetDay(19)
+prueba.GetMonth(1)
+prueba.GetYear(2021)
+prueba.GetHour(7)
+prueba.GetMinute(30)
+
+#prueba.Dump()
+
+#print(prueba.LoadToday(2021, 1, 19)[2])
+
