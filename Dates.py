@@ -42,13 +42,13 @@ class Date:
     def Dump(self):
         if self.__Check():
 
-            if os.path.exists("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv"):
-                File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "a");
+            if os.path.exists("dates"+ os.sep+ str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv"):
+                File = open("dates"+os.sep + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "a");
                 File.write(str(self.__Year) + "," + str(self.__Month) + "," + str(self.__Day) + "," + str(
                     self.__Hour) + "," + str(self.__Minute) + "," + str(self.__Name) +"\n");
                 File.close();
             else:
-                File = open("dates/" + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "w");
+                File = open("dates"+ os.sep + str(self.__Year) + str(self.__Month) + str(self.__Day) + ".csv", "w");
                 File.write("Year,Month,Day,Hour,Minute\n" + str(self.__Year) + "," + str(self.__Month) + "," + str(
                     self.__Day) + "," + str(self.__Hour) + "," + str(self.__Minute) + "," +str(self.__Name)+"\n");
                 File.close();
@@ -62,9 +62,9 @@ class Date:
 
         Dates = [];
 
-        if os.path.exists("dates/" + str(Year) + str(Month) + str(Day) + ".csv"):
+        if os.path.exists("dates"+ os.sep + str(Year) + str(Month) + str(Day) + ".csv"):
 
-            File = open("dates/" + str(Year) + str(Month) + str(Day) + ".csv", "r");
+            File = open("dates"+ os.sep + str(Year) + str(Month) + str(Day) + ".csv", "r");
 
             for Line in File:
                 Dates.append(Line);
