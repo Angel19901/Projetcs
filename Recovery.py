@@ -37,24 +37,21 @@ class Recovery:
             except:
                 pass
 
-        if os.path.exists(Device + "usr"):
+        if os.path.exists(Device + "dates"):
             try:
-                shutil.rmtree(Device + "usr")
+                shutil.rmtree(Device + "dates")
             except:
                 pass
 
         try:
 
-            shutil.copytree((Ruta + "usr"),Device);
-            shutil.copytree((Ruta + "exp"),Device);
-            shutil.copytree((Ruta + "dates"),Device);
+            shutil.copytree((Ruta + "usr"),Device + "usr");
+            shutil.copytree((Ruta + "exp"),Device + "exp");
+            shutil.copytree((Ruta + "dates"),Device + "dates");
 
         except:
 
             return 0;
 
-    def Recovery(self):
-
-
-
+    def Recovery(self, Device):
 
