@@ -230,6 +230,8 @@ void MostrarMensajeEncriptadoDesencriptado(char n)
     {
 
         case 1:
+
+	    printf("%d\n",2);
             for(int i = 0; i < VectorCifrada.size(); i++)
             {
                 printf("%d ",VectorCifrada[i]);
@@ -238,6 +240,7 @@ void MostrarMensajeEncriptadoDesencriptado(char n)
             printf("\n");
            break;
         case 2:
+	    printf("%d\n",1);
             for(int i = 0; i < VectorDecifrada.size(); i++)
             {
                 printf("%c",char(VectorDecifrada[i]));
@@ -275,23 +278,26 @@ void ObtencionCadenaCaracteres()
 
 	string Frase;
 
-	getline(cin, Frase);
-
-	int Faltante = 3 - int(Frase.size()) % 3;
-
-	for(int i = 0; i < int(Frase.size()); ++i)
-		VectorString.push_back(int(Frase[i]));
-
-	for(int i = 0; i < Faltante; ++i)
+	while(getline(cin, Frase))
 	{
 
-		if(i == Faltante - 1)
-			VectorString.push_back(10);
-		else
-			VectorString.push_back(32);
+		int Faltante = 3 - int(Frase.size()) % 3;
+
+		for(int i = 0; i < int(Frase.size()); ++i)
+			VectorString.push_back(int(Frase[i]));
+
+		for(int i = 0; i < Faltante; ++i)
+		{
+
+			if(i == Faltante - 1)
+				VectorString.push_back(10);
+			else
+				VectorString.push_back(32);
+
+		}
 
 	}
-   
+
 }
 
 int main()
@@ -300,8 +306,6 @@ int main()
 
 	scanf("%d",&n);
 	getchar();
-
-	fflush(stdin);
 
         switch(n)
         {
