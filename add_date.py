@@ -4,7 +4,7 @@ from datetime import datetime
 import Dates as d
 from tkinter import messagebox
 
-def Add2():
+def Add2(tree):
     root = tk.Tk()
     root.title("Nueva cita")
     root.geometry("450x100")
@@ -50,12 +50,15 @@ def Add2():
         minutes = []
 
         for i in range(60):
-            if(i<=10):
+            if(i<10):
                 minutes.append("0" + str(i + 1))
             else:
                 minutes.append(str(i + 1))
 
         return minutes
+
+    def exit():
+        root.destroy()
 
     #Combobox fechas
 
@@ -114,11 +117,28 @@ def Add2():
 
             prueba.Dump()
 
-            print(prueba.LoadToday(int(anio), int(mes), int(dia)))
+            prueba = prueba.LoadToday(anio, mes, dia)[len(prueba.LoadToday(anio, mes, dia))-1]
+            fecha = str(str(prueba[2]) + "/" + str(prueba[1]) + "/" + str(prueba[0]))
+            hora = str(str(prueba[3]) + ":" + str(prueba[4]))
+
+            tree.insert("", 10, text=prueba[5], values=(fecha, hora))
+            exit()
+
         except:
             messagebox.showerror("¡Error!", "Llene todos los campos requeridos")
 
+
     Accept = tk.Button(root, text="Aceptar", bg="light blue", command=lambda: save())
-    Accept.place(x=160, y=70)
+    Accept.place(x=160, y=70, width=60, height=25)
+
+
+
+    Exit = tk.Button(root, text="Salir", bg="light blue", command=lambda: exit())
+    Exit.place(x=250, y=70, width=60, height=25)
+
 
     root.mainloop()
+
+
+
+

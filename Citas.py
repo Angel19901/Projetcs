@@ -3,7 +3,8 @@ import tkinter
 from tkinter import *
 import time
 from tkinter import ttk
-import add_date
+import Dates as d
+from datetime import datetime
 
 
 
@@ -56,9 +57,8 @@ class firstwindow():
             import Dates
         def CerrarV():
             root.withdraw()
-        def new_date():
-            import add_date as new
-            new.Add2()
+
+
 
         # -----WIDGETS------
         Label(title_frame, text='CITAS', bg="#0c3a56", fg="white",  font=("Tahoma", 50, "bold")).grid(row=1, column=0)
@@ -94,7 +94,38 @@ class firstwindow():
 
         tree.grid(row=0, column=0, sticky=NSEW)
 
-        tree.insert("", 0, text=user, values = ("12/09/2021", "5:00"))
+
+        def view(tableau_frame):
+            prueba = d.Date()
+            now = datetime.now()
+            year = int(now.year)
+            month = int(now.month)
+            day = int(now.day)
+
+            if (prueba.LoadToday(year, month, day)):
+                length = len(prueba.LoadToday(year, month, day))
+
+                for i in range(length-1):
+                    pru = prueba.LoadToday(year, month, day)[i+1]
+
+                    fecha = str(str(pru[2]) + "/"+ str(pru[1]) + "/" + str(pru[0]))
+                    hora = str(str(pru[3]) + ":" + str(pru[4]))
+
+                    tree.insert("", 10, text=pru[5], values=(fecha, hora))
+            else:
+                tree.insert("", 10, text= "No hay citas programadas", values = ("", ""))
+
+        def new_date(tree):
+            import add_date as new
+            prueba = d.Date()
+
+            try:
+                new.Add2(tree)
+            except:
+                print("")
+
+
+        view(tableau_frame)
 
         # ------Foto/Fecha y hora------
             # HORA Y FECHA
@@ -125,7 +156,7 @@ class firstwindow():
 
         # ---botones add_date, delete_date, exit---
         add_date_button = Button(buttons2_frame, text='Agregar cita', width=16)
-        add_date_button.configure(bg="gray", cursor='hand2', font=("Monospaced", 15), fg="white", command=lambda: new_date())
+        add_date_button.configure(bg="gray", cursor='hand2', font=("Monospaced", 15), fg="white", command=lambda: new_date(tree))
         add_date_button.grid(row=0, column=0, padx=2, pady=3, sticky=W + E)
 
         delete_date_button = Button(buttons2_frame, text='Eliminar cita', width=16)
@@ -138,5 +169,3 @@ class firstwindow():
 
 
         root.mainloop()
-
-
