@@ -19,7 +19,7 @@ def CreateDirAndFile(ID, Data):
         else:
                 try:
 
-                        os.mkdir(str("exp" + os.sep+ str(ID)))
+                        os.mkdir(str("exp" + os.sep+ str(ID)));
                         CreateDirAndFile(ID,Data);
 
                 except OSError:
@@ -35,14 +35,6 @@ def SClean(String):
         for i in String:
                 Aux += i if i != "\n" else " ";
 
-
-        Res = (len(Aux) + 1 % 3)
-
-        Res = 3 - Res;
-
-        if Res > 0:
-                for i in range(Res):
-                        Aux += " ";
         return Aux;
 
 class HISCG: 
@@ -302,16 +294,37 @@ class HISCG:
                 except IOError:
                         return -1;
 
-        def __Encrypt(self, ):
-                pass;
+        def __Encrypt(self, ID):
+                ruta_ = os.getcwd();
+                ruta_2 = ruta_ + str(os.sep + "exp"+ os.sep +str(ID) + os.sep + str(ID) + ".expe");
+                ruta_3 = ruta_ + str(os.sep + "exp"+ os.sep +str(ID) + os.sep + str(ID) + ".cry");
+                os.system("Cifrado.exe < " + "\"" + ruta_2 +"\"" +" > " + "\"" + ruta_3 + "\"");
 
+                if os.path.exists(ruta_3):
+                        try:
+                                os.remove(ruta_2);
+                        except OSError:
+                                pass;
+
+
+        def __Decrypt(self, ID):
+                ruta_ = os.getcwd();
+                ruta_2 = ruta_ + str(os.sep + "exp"+ os.sep +str(ID) + os.sep + str(ID) + ".expe");
+                ruta_3 = ruta_ + str(os.sep + "exp"+ os.sep +str(ID) + os.sep + str(ID) + ".cry");
+                os.system("Cifrado.exe < " + "\"" +ruta_3 +"\"" +" > " + "\"" + ruta_2 + "\"");
+
+                if os.path.exists(ruta_3):
+                        try:
+                                 return ruta_2;
+                        except OSError:
+                                pass;
 
         def Dump(self):
 
                 ID = self.IDP();
 
                 if ID >= 0:
-
+                        CreateDirAndFile(ID,"1\n");
                         # 0 Datos de Unidad
                         self.UNIDAD_MEDICA = SClean(self.UNIDAD_MEDICA) + "\n"
                         CreateDirAndFile(ID, self.UNIDAD_MEDICA);
@@ -435,3 +448,25 @@ class HISCG:
                         # XIII. PRONOSTICO
                         self.Pro = SClean(self.Pro) + "\n"
                         CreateDirAndFile(ID, self.Pro);
+
+                        self.__Encrypt(ID);
+
+
+        def Load(self,ID):
+
+                self.__Decrypt(ID);
+
+                if os.path.exists("exp" + os.sep + str(ID) + os.sep + str(ID) +  ".expe"):
+
+                        File = open("exp" + os.sep + str(ID) + os.sep + str(ID) + ".expe");
+
+                        Datos = []
+
+                        for Line in File:
+                                Datos.append(Line);
+
+                        os.remove("exp" + os.sep + str(ID) + os.sep + str(ID) + ".expe");
+
+
+
+
