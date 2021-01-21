@@ -67,7 +67,7 @@ class Date:
             File = open("dates"+ os.sep + str(Year) + str(Month) + str(Day) + ".csv", "r");
 
             for Line in File:
-                Dates.append(Line);
+                Dates.append(Line.split(","));
 
             File.close();
 
