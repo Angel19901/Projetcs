@@ -40,7 +40,7 @@ class Medicine:
 
         try:
             File = open("med" + os.sep + "Medicinas.csv","a");
-            File.write(str(ID) + "," + str(Name) + "," + str(Des) + "\n");
+            File.write(str(self.ID) + "," + str(self.Name) + "," + str(self.Des) + "\n");
             File.close()
         except IOError:
             pass;
