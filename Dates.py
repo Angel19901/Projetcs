@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-import os;
 
+import os;
 
 class Date:
     __Year = -1;
@@ -147,7 +146,7 @@ class Date:
             File = open("dates"+ os.sep + str(Year) + str(Month) + str(Day) + ".csv", "r");
 
             for Line in File:
-                Dates.append(Line);
+                Dates.append(Line.split(","));
 
             File.close();
 
@@ -164,9 +163,3 @@ prueba.GetMonth(1)
 prueba.GetYear(2021)
 prueba.GetHour(7)
 prueba.GetMinute(30)
-
-#prueba.Dump()
-
-#print(prueba.LoadToday(2021, 1, 19)[2])
-
->>>>>>> d062470a0cf07e9ea692732b3157ca847525dcc3
